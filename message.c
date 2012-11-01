@@ -86,7 +86,6 @@ gboolean mrim_send_attention(PurpleConnection  *gc, const char *username, guint 
 void mrim_receive_im_chat(MrimData *mrim, MrimPackage *pack, guint32 msg_id, guint32 flags, gchar *room, gchar *message)
 {
 	PurpleConnection *gc = mrim->gc;
-	gchar *rtf  = mrim_package_read_LPSA(pack); // rtf
 
 	// handle chat-specific functions
 	MrimAck *ack = g_hash_table_lookup(mrim->acks, GUINT_TO_POINTER(msg_id));
@@ -141,7 +140,6 @@ void mrim_receive_im_chat(MrimData *mrim, MrimPackage *pack, guint32 msg_id, gui
 			// TODO: left from chat
 			break;
 	}
-	g_free(rtf);
 	g_free(topic);
 }
 
