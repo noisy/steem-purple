@@ -5,7 +5,6 @@
 #include "util.h"
 #include <glib.h>
 
-
 #include "mrim.h"
 #include "package.h"
 #include "cl.h"
@@ -33,7 +32,7 @@ typedef struct _MrimFT MrimFT;
 
 struct _MrimFT {
 	MrimData *mrim;
-	gchar *user_name; // please, document this field.
+	gchar *user_name; // The person on the other end of the transfer
 	guint32 id;
 	guint32 proxy_id[4];
 	gchar *remote_ip;

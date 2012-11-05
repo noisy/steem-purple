@@ -24,6 +24,8 @@
 #include <libgen.h>
 #include "stdbool.h"
 
+
+/* Used in PurplePluginProtocolInfo */
 gboolean mrim_can_send_file(PurpleConnection *gc, const char *who) {
 	MrimData *mrim = gc->proto_data;
 	g_return_val_if_fail(mrim != NULL, FALSE); // WHY: -1 warning.
@@ -36,6 +38,7 @@ gboolean mrim_can_send_file(PurpleConnection *gc, const char *who) {
 	}
 }
 
+/* Used in PurplePluginProtocolInfo */
 PurpleXfer *mrim_new_xfer(PurpleConnection *gc, const char *who) {
 	purple_debug_info("mrim-prpl", "[%s]\n", __func__);
 	PurpleXfer *xfer;
@@ -50,6 +53,7 @@ PurpleXfer *mrim_new_xfer(PurpleConnection *gc, const char *who) {
 	return xfer;
 }
 
+/* Used in PurplePluginProtocolInfo */
 void mrim_send_file(PurpleConnection *gc, const char *who, const char *file) {
 	PurpleXfer *xfer = mrim_new_xfer(gc, who);
 	if (file) {
@@ -59,7 +63,7 @@ void mrim_send_file(PurpleConnection *gc, const char *who, const char *file) {
 	}
 }
 
-
+/* on MRIM_CS_FILE_TRANSFER receive */
 void mrim_xfer_got_rq(MrimPackage *pack, MrimData *mrim) {
 	purple_debug_info("mrim-prpl", "[%s] MRIM_CS_FILE_TRANSFER\n", __func__);
 	gchar *user_name = mrim_package_read_LPSA(pack);
@@ -87,6 +91,7 @@ void mrim_xfer_got_rq(MrimPackage *pack, MrimData *mrim) {
 	}
 	purple_debug_info("mrim-prpl", "[%s] MRIM_CS_FILE_TRANSFER: user_name = '%s', file_size = '%u', file_count = '%u', id='%u'\n", __func__, user_name, file_size, file_count, id);
 	g_free(file_list);
+	
 	MrimFT *ft = g_new0(MrimFT, 1);
 	ft->mrim = mrim;
 	ft->user_name = user_name;
@@ -97,6 +102,7 @@ void mrim_xfer_got_rq(MrimPackage *pack, MrimData *mrim) {
 	mrim_process_xfer(ft);
 }
 
+/* on MRIM_CS_FILE_TRANSFER_ACK receive */
 void mrim_xfer_ack(MrimPackage *pack, MrimData *mrim) {
 	purple_debug_info("mrim-prpl", "[%s] MRIM_CS_FILE_TRANSFER_ACK\n", __func__);
 	guint32 status = mrim_package_read_UL(pack);
@@ -108,7 +114,7 @@ void mrim_xfer_ack(MrimPackage *pack, MrimData *mrim) {
 	if (xfer) {
 		if (status == FILE_TRANSFER_MIRROR) {
 			MrimFT *ft = xfer->data;
-			purple_debug_info("mrim-prpl", "[%s] User='%s' accepted files! id='%xu'\n", __func__, user_name, id);
+			purple_debug_info("mrim-prpl", "[%s] User='%s' accepted files! id='%x'\n", __func__, user_name, id);
 		//Допустим белого IP у нас нет и запросим зеркальный прокси TODO
 			MrimPackage *ack = mrim_package_new(mrim->seq++, MRIM_CS_PROXY);
 			mrim_package_add_LPSA(ack, user_name);
@@ -138,6 +144,7 @@ void mrim_xfer_ack(MrimPackage *pack, MrimData *mrim) {
 }
 
 void mrim_xfer_proxy_ack(MrimPackage *pack, MrimData *mrim) {
+/* on MRIM_CS_PROXY_ACK received */
 	guint status = mrim_package_read_UL(pack);
 	gchar *user_name = mrim_package_read_LPSA(pack);
 	guint32 id = mrim_package_read_UL(pack);
@@ -145,7 +152,7 @@ void mrim_xfer_proxy_ack(MrimPackage *pack, MrimData *mrim) {
 	gchar *file_list = mrim_package_read_LPSA(pack);
 	gchar *remote_ip = mrim_package_read_LPSA(pack);
 	// В пакете есть ещё и другие поля, но они нам не нужны (*кроме proxy_id)
-	g_return_if_fail(data_type != MRIM_PROXY_TYPE_FILES);
+	g_return_if_fail(data_type == MRIM_PROXY_TYPE_FILES);
 	PurpleXfer *xfer = g_hash_table_lookup(mrim->transfers, GUINT_TO_POINTER(id));
 	if (xfer) {
 		if (status == PROXY_STATUS_OK) {
