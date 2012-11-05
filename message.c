@@ -311,7 +311,7 @@ void mrim_receive_offline_message(MrimData *mrim, gchar *message) {
 		}
 		gchar *msg = purple_markup_escape_text(message_text, -1);
 		if (purple_account_get_bool(mrim->gc->account, "debug_mode", FALSE)) {
-			gchar *dbg_msg = g_strdup_printf("%s {Source='%s'}", msg, message);
+			gchar *dbg_msg = g_strdup_printf("[%s] {Source='%s'}", msg, message);
 			g_free(msg);
 			msg = dbg_msg;
 		}
@@ -358,10 +358,10 @@ void mrim_send_sms(MrimData *mrim, gchar *phone, gchar *message) {
 /* CHATS */
 void mrim_chat_whisper(PurpleConnection *gc, int id, const char *who, const char *message)
 {
-	purple_debug_info("mrim-prpl", "%s\n", __func__);
+	purple_debug_info("mrim-prpl", "[%s]\n", __func__);
 	const char *username = gc->account->username;
 	PurpleConversation *conv = purple_find_chat(gc, id);
-	purple_debug_info("mrim-prpl", "%s receives whisper from %s in chat room %s: %s\n", username, who, conv->name, message);
+	purple_debug_info("mrim-prpl", "[%s] receives whisper from %s in chat room %s: %s\n", username, who, conv->name, message);
 
 	/* receive whisper on recipient's account */
 	serv_got_chat_in(gc, id, who, PURPLE_MESSAGE_RECV | PURPLE_MESSAGE_WHISPER, message, time(NULL));
@@ -369,7 +369,7 @@ void mrim_chat_whisper(PurpleConnection *gc, int id, const char *who, const char
 
 int mrim_chat_send(PurpleConnection *gc, int id, const char *message, PurpleMessageFlags flags)
 {
-	purple_debug_info("mrim-prpl", "%s\n", __func__);
+	purple_debug_info("mrim-prpl", "[%s] send chat message to id='%i'\n", __func__, id);
 	MrimData *mrim = gc->proto_data;
 	const char *username = gc->account->username;
 	PurpleConversation *conv = purple_find_chat(gc, id);
@@ -381,7 +381,7 @@ int mrim_chat_send(PurpleConnection *gc, int id, const char *message, PurpleMess
 	}
 
 	MrimPackage *pack = mrim_package_new(mrim->seq++, MRIM_CS_MESSAGE);
-	mrim_package_add_UL(pack, MESSAGE_FLAG_NORECV); /* flags */
+	mrim_package_add_UL(pack, MESSAGE_FLAG_NORECV); /* flags: we don't use PURPLE_CONV_TYPE_CHAT */
 	mrim_package_add_LPSA(pack, conv->name);
 
 	gchar *msg = purple_markup_strip_html((gchar*)message);
@@ -397,5 +397,5 @@ int mrim_chat_send(PurpleConnection *gc, int id, const char *message, PurpleMess
 
 void mrim_set_chat_topic(PurpleConnection *gc, int id, const char *topic)
 {
-	purple_debug_info("mrim-prpl", "%s\n", __func__);
+	purple_debug_info("mrim-prpl", "[%s]\n", __func__);
 }

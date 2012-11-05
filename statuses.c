@@ -204,26 +204,12 @@ void update_buddy_status(PurpleBuddy *buddy) {
 	MrimBuddy *mb = buddy->proto_data;
 	if (mb) {
 		MrimData *mrim = mb->mrim;
-		if (!mrim) {
-			purple_debug_info("mrim-underbush", "[%s] NO mrim struct!\0", __func__);
-			return;
-		}
-		if (!mrim->gc) {
-			purple_debug_info("mrim-underbush", "[%s] NO mrim->gc struct!\0", __func__);
-			return;
-		}
-		if (!mrim->gc->account) {
-			purple_debug_info("mrim-underbush", "[%s] NO mrim->gc->account struct!\0", __func__);
-			return;
-		}
-		if (!mb->email) {
-			purple_debug_info("mrim-underbush", "[%s] NO mb->email struct!\0", __func__);
-			return;
-		}
-		if (!mb->status) {
-			purple_debug_info("mrim-underbush", "[%s] NO mb->status struct!\0", __func__);
-			return;
-		}
+		g_return_if_fail(mrim);
+		g_return_if_fail(mrim->gc);
+		g_return_if_fail(mrim->gc->account);
+		g_return_if_fail(mb->email);
+		g_return_if_fail(mb->status);
+		
 		purple_prpl_got_user_status(mrim->gc->account, mb->email, mb->status->purple_id, NULL);
 		if (mb->flags & CONTACT_FLAG_PHONE) {
 			purple_prpl_got_user_status(mrim->gc->account, mb->email, "mood",

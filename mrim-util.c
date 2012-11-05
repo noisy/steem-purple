@@ -71,9 +71,9 @@ gboolean is_valid_phone(gchar *phone) {
 }
 
 gchar *mrim_get_ua_alias(MrimData *mrim, gchar *ua) {
-	g_return_if_fail(mrim != NULL);
-	g_return_if_fail(mrim->gc != NULL);
-	g_return_if_fail(mrim->gc->account != NULL);
+	g_return_val_if_fail(mrim != NULL, NULL);
+	g_return_val_if_fail(mrim->gc != NULL, NULL);
+	g_return_val_if_fail(mrim->gc->account != NULL, NULL);
 	if (purple_account_get_bool(mrim->gc->account, "debug_mode", FALSE)) {
 		return g_strdup(ua);
 	}

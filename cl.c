@@ -1097,7 +1097,7 @@ void mrim_get_info(PurpleConnection *gc, const char *username) {
 
 void mrim_searchresults_add_buddy(PurpleConnection *gc, GList *row, void *user_data) {
 	MrimData *mrim = user_data;
-	purple_debug_info("mrim","%s", mrim->account->username);
+	purple_debug_info("mrim-prpl","[%s] %s\n", __func__, mrim->account->username);
 	if (!purple_find_buddy(mrim->account, g_list_nth_data(row, 0))) {
 			purple_blist_request_add_buddy(mrim->account,  g_list_nth_data(row, 0), NULL, NULL); // TODO Propose alias automatically.
 		}
@@ -1313,7 +1313,7 @@ void mrim_reject_chat(PurpleConnection *gc, GHashTable *components)
 
 char *mrim_get_chat_name(GHashTable *components)
 {
-	purple_debug_info("mrim", "%s\n", __func__);
+	purple_debug_info("mrim", "[%s]\n", __func__);
 	const char *str = g_hash_table_lookup(components, "room");
 	return (char*)str;
 }
@@ -1326,7 +1326,7 @@ void mrim_chat_invite(PurpleConnection *gc, int id, const char *message, const c
 	PurpleConversation *conv = purple_find_chat(gc, id);
 	const char *room = conv->name;
 
-	purple_debug_info("mrim-prpl", "%s is invited to join chat room %s\n", who, room);
+	purple_debug_info("mrim-prpl", "[%s] %s is invited to join chat room %s\n", __func__, who, room);
 
 	MrimPackage *pack = mrim_package_new(mrim->seq++, MRIM_CS_MESSAGE);
 	mrim_package_add_UL(pack, CONTACT_FLAG_MULTICHAT );

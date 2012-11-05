@@ -544,7 +544,7 @@ static void mrim_input_cb(gpointer data, gint source, PurpleInputCondition cond)
 	} else {
 		int err;
 		if (purple_input_get_error(mrim->fd, &err) != 0) {
-			purple_debug_info("mrim-prpl", "[%s] Input error", __func__);
+			purple_debug_info("mrim-prpl", "[%s] Input error\n", __func__);
 			purple_connection_error_reason (gc, PURPLE_CONNECTION_ERROR_NETWORK_ERROR, _("Input Error"));
 		}
 
