@@ -214,6 +214,7 @@ void mrim_receive_offline_message(MrimData *mrim, gchar *message) {
 	GMatchInfo *match_info;
 	g_regex_match(regex, message_header, 0, &match_info);
 	gchar *from = NULL;
+	gchar *sender = NULL; // used in chats
 	gchar *date_str = NULL;
 	gchar *boundary = NULL;
 	gchar *charset = NULL;
@@ -225,6 +226,8 @@ void mrim_receive_offline_message(MrimData *mrim, gchar *message) {
 		purple_debug_info("mrim-prpl", "[%s] '%s' == '%s'\n", __func__, key, value);
 		if (g_strcmp0(key, "From") == 0) {
 			from = g_strdup(value);
+		} else if (g_strcmp0(key, "Sender") == 0) {
+			sender = g_strdup(value);
 		} else if (g_strcmp0(key, "Date") == 0) {
 			date_str = g_strdup(value);
 		} else if (g_strcmp0(key, "Content-Type") == 0) {
@@ -315,7 +318,10 @@ void mrim_receive_offline_message(MrimData *mrim, gchar *message) {
 			g_free(msg);
 			msg = dbg_msg;
 		}
-		serv_got_im(mrim->gc, from, msg, PURPLE_MESSAGE_RECV, date);
+		if (flags & MESSAGE_FLAG_MULTICHAT)
+			serv_got_chat_in(mrim->gc, get_chat_id(from), sender, PURPLE_MESSAGE_RECV, msg, date);
+		else
+			serv_got_im(mrim->gc, from, msg, PURPLE_MESSAGE_RECV, date);
 		g_free(msg);
 		g_free(message_text);
 	}
