@@ -7,7 +7,13 @@
 *.bak
 *?~
 help.h
-config.h
+config_generated.h
+config_generated.h.in
 .project
 .cproject
 .settings/*
+autom4te.cache/*
+config.log
+config.status
+configure
+Makefile

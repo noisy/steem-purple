@@ -1,0 +1,12 @@
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+
+all clean:
+install:
+	$(INSTALL_DATA) -D pixmaps/mrim16.png  ${DESTDIR}/usr/share/pixmaps/pidgin/protocols/16/mrim.png
+	$(INSTALL_DATA) -D pixmaps/mrim22.png  ${DESTDIR}/usr/share/pixmaps/pidgin/protocols/22/mrim.png
+	$(INSTALL_DATA) -D pixmaps/mrim48.png  ${DESTDIR}/usr/share/pixmaps/pidgin/protocols/48/mrim.png
+uninstall:
+	rm -fv ${DESTDIR}/usr/share/pixmaps/pidgin/protocols/16/mrim.png
+	rm -fv ${DESTDIR}/usr/share/pixmaps/pidgin/protocols/22/mrim.png
+	rm -fv ${DESTDIR}/usr/share/pixmaps/pidgin/protocols/48/mrim.png
