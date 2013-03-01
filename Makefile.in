@@ -2,8 +2,5 @@ all clean install uninstall:
 	cd src && $(MAKE) $@
 	cd po && $(MAKE) $@
 	cd pixmaps && $(MAKE) $@
-clean:
-	cd src && $(MAKE) $@
-	cd po && $(MAKE) $@
 i18n:
 	cd po && $(MAKE) $@

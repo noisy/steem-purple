@@ -1,5 +1,5 @@
 AC_INIT([mrim-prpl], [0.2], [mrim-prpl@googlegroups.com],, [http://code.google.com/p/mrim-prpl/])
-AM_INIT_AUTOMAKE([mrim-prpl], [0.2])
+AM_INIT_AUTOMAKE([mrim-prpl], [0.2], [mrim-prpl@googlegroups.com])
 AC_CONFIG_SRCDIR([src/mrim.c])
 AC_CONFIG_HEADERS([src/config_generated.h])
 
