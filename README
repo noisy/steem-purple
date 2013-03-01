@@ -1,14 +1,15 @@
 Mail.ru Agent protocol plugin for Pidgin (libpurple)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Copyright 2010-2011 Antonov Nikolay <ostinru@gmail.com>
-Copyright 2010-2011 Reslayer <Reslayer@mail.ru>
-Copyright 2011 KIV <kiv.apple@gmail.com>
+Copyright 2010-2013 Antonov Nikolay <ostinru@gmail.com>
+Copyright 2010-2013 Reslayer <Reslayer@mail.ru>
+Copyright 2011-2013 KIV <kiv.apple@gmail.com>
 
 This protocol plugin is based on 
-Nullprpl is Copyright 2004 Ryan Barrett, and is distributed under the GPL.
+Nullprpl is Copyright 2004 Ryan Barrett, and is distributed under the GPL2+.
 
 Thanks to
+Sorokin Alexei <sor.alexei@hotbox.ru>
 Atamurad Hezretkuliyev <atamyrat@gmail.com>
 Podtykan Maxim <lemax1@mail.ru>
 
@@ -16,7 +17,7 @@ Podtykan Maxim <lemax1@mail.ru>
 --------
 Описание
 --------
-prpl-ostin-mrim - это реализация протокола MMP (Mail.Ru) для Pidgin и libpurple.
+mrim-prpl - это реализация протокола MMP (Mail.Ru) для Pidgin и libpurple.
 
 Лицензия:
 	GPL v2 или выше
@@ -24,21 +25,21 @@ prpl-ostin-mrim - это реализация протокола MMP (Mail.Ru) �
 Зависимости:
 	libpurple >=2.7.0
 	gtk+ >= 2.?
-	Так же используется gettext, pkg-config
+	Также используется autotools, shtool, gettext, pkg-config
 
 Официальный сайт:
-	http://code.google.com/p/mrim-prpl/
+	https://code.google.com/p/mrim-prpl/
 
 -----------------------
 Сборка и установка
 -----------------------
 Для некоторых дистрибутивов уже есть готовые пакеты:
 1) АльтЛинукс:
-	http://www.sisyphus.ru/en/srpm/Sisyphus/pidgin-plugin-mrim/
+	http://sisyphus.ru/en/srpm/Sisyphus/pidgin-plugin-mrim/
 2) Debian/Ubuntu, Mandriva пакеты можно взять со странички:
-	http://code.google.com/p/mrim-prpl/downloads/list
+	https://code.google.com/p/mrim-prpl/downloads/list
 3) ArchLinux:
-	http://code.google.com/p/mrim-prpl/downloads/list
+	https://code.google.com/p/mrim-prpl/downloads/list
 	самые свежие версии пакетов:
 	http://aur.archlinux.org/packages.php?ID=50800 (самая последняя версия из GIT)
 	http://aur.archlinux.org/packages.php?ID=42134 (самая последняя стабильная версия)
@@ -53,10 +54,7 @@ prpl-ostin-mrim - это реализация протокола MMP (Mail.Ru) �
 		Для Fedora:
 			yum install pidgin-devel
 		В Gentoo и ArchLinux достаточно установить сам Pidgin.
-	2.1) (до 2013)
-	    ./configure --gtk && make && sudo make install
-	2.2) (с 2013)
-	    autoreconf -i && automake --add-missing; ./configure && ./update-locale.sh && make && sudo make install
+	2) autoreconf -i && automake --add-missing; ./configure && make && sudo make install
 	3) Перезапускаем Pidgin
 	4) В "Учётные записи" - "Manage Accounts" ("Управление аккаунтами") создаём новое подключение
 		к УЖЕ ИМЕЮЩЕМУСЯ аккаунту на mail.ru (list.ru, bk.ru...) (то есть, зарегистрировать
