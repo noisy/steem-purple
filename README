@@ -53,7 +53,10 @@ prpl-ostin-mrim - это реализация протокола MMP (Mail.Ru) �
 		Для Fedora:
 			yum install pidgin-devel
 		В Gentoo и ArchLinux достаточно установить сам Pidgin.
-	2) ./configure --gtk && make && sudo make install
+	2.1) (до 2013)
+	    ./configure --gtk && make && sudo make install
+	2.2) (с 2013)
+	    autoreconf -i && automake --add-missing; ./configure && ./update-locale.sh && make && sudo make install
 	3) Перезапускаем Pidgin
 	4) В "Учётные записи" - "Manage Accounts" ("Управление аккаунтами") создаём новое подключение
 		к УЖЕ ИМЕЮЩЕМУСЯ аккаунту на mail.ru (list.ru, bk.ru...) (то есть, зарегистрировать

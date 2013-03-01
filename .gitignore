@@ -17,3 +17,5 @@ config.log
 config.status
 configure
 Makefile
+aclocal.m4
+install-sh
