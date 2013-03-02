@@ -54,7 +54,7 @@ mrim-prpl - это реализация протокола MMP (Mail.Ru) для 
 		Для Fedora:
 			yum install pidgin-devel
 		В Gentoo и ArchLinux достаточно установить сам Pidgin.
-	2) autoreconf -i && automake --add-missing; ./configure && make && sudo make install
+	2) aclocal -I /usr/share/aclocal && autoheader && autoconf && ./configure && make && sudo make install
 	3) Перезапускаем Pidgin
 	4) В "Учётные записи" - "Manage Accounts" ("Управление аккаунтами") создаём новое подключение
 		к УЖЕ ИМЕЮЩЕМУСЯ аккаунту на mail.ru (list.ru, bk.ru...) (то есть, зарегистрировать
