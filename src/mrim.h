@@ -13,9 +13,23 @@
 #define LOCALEDIR "po"
 #include <glib/gi18n-lib.h>
 
-#include <sys/socket.h>
-//#include <netinet/in.h> 
-//#include <arpa/inet.h>
+#ifdef WIN32
+	#include <winsock2.h>
+	#include <windows.h>
+	#include <lm.h>
+	//#include "dns_sd_proxy.h"
+	// in Windows <= 2003 MSG_WAITALL can be missed
+	#ifndef MSG_WAITALL
+		#define MSG_WAITALL	0x08
+	#endif
+	#define strnlen(s,len) strlen(s)
+	#define ENOTCONN	107
+#else
+	#include <sys/socket.h>
+//	#include <netinet/in.h>
+//	#include <arpa/inet.h>
+#endif
+
 
 // libpurple
 #include "accountopt.h"

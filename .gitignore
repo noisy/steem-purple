@@ -6,6 +6,8 @@
 *.mo
 *.bak
 *?~
+*.exe
+*.dll
 help.h
 config_generated.h
 config_generated.h.in
@@ -19,3 +21,4 @@ configure
 Makefile
 aclocal.m4
 mrim-prpl-testrunner
+Output/*
