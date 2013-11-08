@@ -1,6 +1,7 @@
-all clean install uninstall:
+all clean install uninstall check:
 	cd src && $(MAKE) $@
 	cd po && $(MAKE) $@
 	cd pixmaps && $(MAKE) $@
+	cd testsrc && $(MAKE) $@
 i18n:
 	cd po && $(MAKE) $@

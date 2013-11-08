@@ -46,4 +46,4 @@ message.o: message.c mrim.h statuses.h cl.h message.h package.h config.h
 	${CC} -c ${CFLAGS} -fPIC -DPIC -o message.o message.c
 mrim-util.o: mrim-util.c mrim-util.h mrim.h config.h
 	${CC} -c ${CFLAGS} -fPIC -DPIC -o mrim-util.o mrim-util.c
-
+check:

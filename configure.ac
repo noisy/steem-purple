@@ -16,6 +16,7 @@ AC_TYPE_SSIZE_T
 # Checks for library functions.
 AC_FUNC_REALLOC
 
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.4])
 PKG_CHECK_MODULES(PURPLE, [purple >= 2.7.0])
 
 AC_ARG_ENABLE([gtk], AS_HELP_STRING([--enable-gtk], [enable gtk+ dialogs]), [with_gtk=${enableval}], [with_gtk=no])
@@ -35,10 +36,11 @@ fi
 
 AC_DEFINE([BUILD_NUMBER], ["null"], [TODO: add git revision])
 
-AC_CONFIG_FILES([Makefile 
-				src/Makefile 
-				po/Makefile 
-				pixmaps/Makefile])
+AC_CONFIG_FILES([Makefile
+				src/Makefile
+				po/Makefile
+				pixmaps/Makefile
+				testsrc/Makefile])
 
 
 AC_OUTPUT

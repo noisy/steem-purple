@@ -24,3 +24,4 @@ uninstall:
 	rm -fv ${DESTDIR}/usr/share/locale/ru_RU/LC_MESSAGES/${PRJID}.mo
 i18n:
 	msgfmt ${POPRJ}-ru_RU.po --output-file=${POPRJ}-ru_RU.mo
+check:

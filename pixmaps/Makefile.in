@@ -1,7 +1,7 @@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 
-all clean:
+all clean check:
 install:
 	$(INSTALL_DATA) -D mrim16.png  ${DESTDIR}/usr/share/pixmaps/pidgin/protocols/16/mrim.png
 	$(INSTALL_DATA) -D mrim22.png  ${DESTDIR}/usr/share/pixmaps/pidgin/protocols/22/mrim.png
