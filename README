@@ -28,7 +28,7 @@ mrim-prpl - это реализация протокола MMP (Mail.Ru) для 
 	Также используется autotools, shtool, gettext, pkg-config, check
 
 Официальный сайт:
-	https://code.google.com/p/mrim-prpl/
+	https://bitbucket.org/mrim-prpl-team/mrim-prpl
 
 -----------------------
 Сборка и установка
@@ -37,9 +37,9 @@ mrim-prpl - это реализация протокола MMP (Mail.Ru) для 
 1) АльтЛинукс:
 	http://sisyphus.ru/en/srpm/Sisyphus/pidgin-plugin-mrim/
 2) Debian/Ubuntu, Mandriva пакеты можно взять со странички:
-	https://code.google.com/p/mrim-prpl/downloads/list
+	https://bitbucket.org/mrim-prpl-team/mrim-prpl/downloads
 3) ArchLinux:
-	https://code.google.com/p/mrim-prpl/downloads/list
+	https://bitbucket.org/mrim-prpl-team/mrim-prpl/downloads
 	самые свежие версии пакетов:
 	http://aur.archlinux.org/packages.php?ID=50800 (самая последняя версия из GIT)
 	http://aur.archlinux.org/packages.php?ID=42134 (самая последняя стабильная версия)
