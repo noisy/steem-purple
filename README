@@ -1,15 +1,15 @@
 Mail.ru Agent protocol plugin for Pidgin (libpurple)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Copyright 2010-2013 Antonov Nikolay <ostinru@gmail.com>
-Copyright 2010-2013 Reslayer <Reslayer@mail.ru>
-Copyright 2011-2013 KIV <kiv.apple@gmail.com>
+Copyright 2010-2014 Antonov Nikolay <ostinru@gmail.com>
+Copyright 2010-2014 Reslayer <Reslayer@mail.ru>
+Copyright 2011-2014 KIV <kiv.apple@gmail.com>
 
 This protocol plugin is based on 
 Nullprpl is Copyright 2004 Ryan Barrett, and is distributed under the GPL2+.
 
 Thanks to
-Sorokin Alexei <sor.alexei@hotbox.ru>
+Sorokin Alexei <sor.alexei@meowr.ru>
 Atamurad Hezretkuliyev <atamyrat@gmail.com>
 Podtykan Maxim <lemax1@mail.ru>
 
@@ -36,10 +36,9 @@ mrim-prpl - это реализация протокола MMP (Mail.Ru) для 
 Для некоторых дистрибутивов уже есть готовые пакеты:
 1) АльтЛинукс:
 	http://sisyphus.ru/en/srpm/Sisyphus/pidgin-plugin-mrim/
-2) Debian/Ubuntu, Mandriva пакеты можно взять со странички:
+2) Debian/Ubuntu пакеты можно взять со странички:
 	https://bitbucket.org/mrim-prpl-team/mrim-prpl/downloads
 3) ArchLinux:
-	https://bitbucket.org/mrim-prpl-team/mrim-prpl/downloads
 	самые свежие версии пакетов:
 	http://aur.archlinux.org/packages.php?ID=50800 (самая последняя версия из GIT)
 	http://aur.archlinux.org/packages.php?ID=42134 (самая последняя стабильная версия)
