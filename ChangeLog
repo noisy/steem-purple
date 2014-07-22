@@ -1,4 +1,14 @@
-version 0.1.28  (28/05/2011). svn r296
+version 0.1.28.1 (04/11/2011). git bfd196c
+	Core
+		Fix build errors
+                Add ICQ UIN support
+	Account
+                Now possible to use custom IP:PORT
+	Misc
+		Documentation now has no execution flag
+                README file is fixed
+
+version 0.1.28  (28/05/2011). git 0e47dc4
 	Core
 		Fix bad package
 		i18n: ru_RU (rc), uk (draft), be_BY (draft), maby other languages
@@ -15,7 +25,7 @@ version 0.1.28  (28/05/2011). svn r296
 		Log SMS to History
 
 
-version 0.1.26 (11/11/2010). svn r38
+version 0.1.26 (11/11/2010). git b0aa631
 	Core
 		? Fix bad package
 		Fix segfault
@@ -29,7 +39,7 @@ version 0.1.26 (11/11/2010). svn r38
 		Fix segfault (at sending unicode-specific symbols)
 		Fix html-formated text recieving
 	
-version 0.1.24 (1/09/2010)
+version 0.1.24 (1/09/2010) git 9be2a6a
 	Core
 		support pidgin 2.3.1+
 	Roster
