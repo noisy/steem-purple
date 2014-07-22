@@ -53,12 +53,12 @@ gboolean string_is_match(gchar *string, gchar *pattern) {
 
 gboolean is_valid_email(gchar *email) {
 	// Actually is an email-like ID; moreover, «is_valid_id» could fit more literally.
-	return string_is_match(email, "([0-9a-zA-Z\\_]+[0-9a-zA-Z\\-\\.\\_]*)@(uin.icq|mail.ru|list.ru|inbox.ru|bk.ru|corp.mail.ru)");
+	return string_is_match(email, "([0-9a-zA-Z\\_]+[0-9a-zA-Z\\-\\.\\_]*)@(uin.icq|mail.ru|mail.ua|list.ru|inbox.ru|bk.ru|corp.mail.ru)");
 }
 
 gboolean is_myworld_able(gchar *email) {
 	// WHY: to separate valid mailru-enabled users who can have any userpic from those bridged (e.g. from ICQ network).
-	return string_is_match(email, "([0-9a-zA-Z\\_]+[0-9a-zA-Z\\-\\.\\_]*)@(mail.ru|list.ru|inbox.ru|bk.ru|corp.mail.ru)");
+	return string_is_match(email, "([0-9a-zA-Z\\_]+[0-9a-zA-Z\\-\\.\\_]*)@(mail.ru|mail.ua|list.ru|inbox.ru|bk.ru|corp.mail.ru)");
 }
 
 
