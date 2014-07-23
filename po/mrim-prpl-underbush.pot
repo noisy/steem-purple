@@ -123,7 +123,7 @@ msgid "Video@Mail.ru"
 msgstr ""
 
 #: cl.c:856 mrim.c:744
-msgid "Blogs@Mail.ru"
+msgid "Answers@Mail.ru"
 msgstr ""
 
 #: cl.c:863

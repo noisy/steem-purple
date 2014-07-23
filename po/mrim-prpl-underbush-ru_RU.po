@@ -135,8 +135,8 @@ msgid "Video@Mail.ru"
 msgstr "Видео@Mail.Ru"
 
 #: cl.c:856 mrim.c:744
-msgid "Blogs@Mail.ru"
-msgstr "Блоги@Mail.Ru"
+msgid "Answers@Mail.ru"
+msgstr "Ответы@Mail.Ru"
 
 #: cl.c:863
 msgid "Remove from 'Visible to' list"

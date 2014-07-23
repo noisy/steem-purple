@@ -741,8 +741,8 @@ GList *mrim_prpl_actions(PurplePlugin *plugin, gpointer context) {
 	action = purple_plugin_action_new(_("Video@Mail.ru"), mrim_myworld_action);
 	action->user_data = "http://r.mail.ru/cln3567/video.mail.ru/%s/%s";
 	actions = g_list_append(actions, action);
-	action = purple_plugin_action_new(_("Blogs@Mail.ru"), mrim_myworld_action);
-	action->user_data = "http://r.mail.ru/cln3566/blogs.mail.ru/%s/%s";
+	action = purple_plugin_action_new(_("Answers@Mail.ru"), mrim_myworld_action);
+	action->user_data = "http://r.mail.ru/cln3566/otvet.mail.ru/%s/%s";
 	actions = g_list_append(actions, action);
 	return actions;
 }
