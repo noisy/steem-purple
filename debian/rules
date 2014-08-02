@@ -15,8 +15,9 @@ override_dh_auto_clean:
 	dh_autoreconf_clean
 
 override_dh_auto_build:
-	autoreconf -i
-	automake -a
+	aclocal -I /usr/share/aclocal/
+	autoheader
+	autoconf
 	./configure
 	$(MAKE)
 

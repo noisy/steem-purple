@@ -26,7 +26,7 @@ clean:
 	rm -f $(EXECUTABLE_NAME)
 	rm -f *.o
 compile: mrim-util-test.o tests.o
-	${CC} ${LDFLAGS} -o ${EXECUTABLE_NAME} mrim-util-test.o tests.o ../src/*.o
+	${CC} -o ${EXECUTABLE_NAME} mrim-util-test.o tests.o ../src/*.o ${LDFLAGS}
 mrim-util-test.o: mrim-util-test.c ../src/mrim-util.h
 	${CC} -c ${CFLAGS} -fPIC -DPIC -o mrim-util-test.o mrim-util-test.c
 tests.o: tests.c tests.h
@@ -34,3 +34,6 @@ tests.o: tests.c tests.h
 
 check:
 	./${EXECUTABLE_NAME}
+
+# to avoid useless errors
+install:
