@@ -939,7 +939,7 @@ static PurplePluginInfo plugin_info = {
 	"Mail.ru Agent protocol plugin",
 	"Mail.ru Agent protocol plugin",
 	"My Name <email@helloworld.tld>",
-	"http://code.google.com/p/mrim-prpl/",     
+	"https://bitbucket.org/mrim-prpl-team/mrim-prpl",     
 	plugin_load,		/* plugin_load */                
 	plugin_unload,		/* plugin_unload */
 	plugin_destroy,		/* plugin_destroy */

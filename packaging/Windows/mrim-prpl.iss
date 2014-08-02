@@ -5,9 +5,9 @@
 AppId={{28D30FEA-45C4-4EE6-BC6C-ECDB7156AD98}
 AppName=mrim-prpl
 AppVersion=0.2.0 (git: 11ecd12dfa2b53a342789e7361a9a045c0493228)
-AppPublisherURL=http://code.google.com/p/mrim-prp
-AppSupportURL=http://code.google.com/p/mrim-prp
-AppUpdatesURL=http://code.google.com/p/mrim-prpl/downloads/list
+AppPublisherURL=https://bitbucket.org/mrim-prpl-team/mrim-prpl
+AppSupportURL=https://bitbucket.org/mrim-prpl-team/mrim-prpl
+AppUpdatesURL=https://bitbucket.org/mrim-prpl-team/mrim-prpl/downloads
 DefaultDirName="{code:GetPidginPath}"
 DefaultGroupName=mrim-prpl
 DisableProgramGroupPage=yes
