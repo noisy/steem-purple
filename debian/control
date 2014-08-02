@@ -1,0 +1,15 @@
+Source: mrim-prpl
+Section: net
+Priority: extra
+Maintainer: Sorokin Alexei <sor.alexei@meowr.ru>
+Build-Depends: debhelper (>= 7.0.50), dh-autoreconf, automake, libpurple-dev (>= 2.4.1)
+Standards-Version: 3.9.2
+Vcs-Git: https://XRevan86@bitbucket.org/mrim-prpl-team/mrim-prpl.git
+Vcs-Browser: https://bitbucket.org/mrim-prpl-team/mrim-prpl/src
+Homepage: https://bitbucket.org/mrim-prpl-team/mrim-prpl
+
+Package: mrim-prpl
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libpurple0 (>= 2.7.0)
+Description: MRIM-plugin for Pidgin
+ Module for Pidgin/finch to connect to Mail.Ru Agent

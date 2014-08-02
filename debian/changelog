@@ -1,0 +1,17 @@
+mrim-prpl (0.2.0+git-1) testing; urgency=low
+
+  * Git snapshot
+
+ -- Sorokin Alexei <sor.alexei@meowr.ru>  Sun, 03 Sep 2011 19:05:04 +0100
+
+mrim-prpl (0.1.28-1) stable; urgency=low
+
+  * Improved package standarts
+
+ -- Sorokin Alexei <sor.alexei@meowr.ru>  Sat, 4 Jun 2011 06:54:33 +0100
+
+mrim-prpl (0.1.26-1) stable; urgency=low
+
+  * First release
+
+ -- Sorokin Alexei <sor.alexei@meowr.ru>  Tue, 16 Nov 2010 16:32:04 +0200
