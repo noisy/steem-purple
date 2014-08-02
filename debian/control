@@ -1,4 +1,4 @@
-Source: mrim-prpl
+Source: pidgin-mrim
 Section: net
 Priority: extra
 Maintainer: Sorokin Alexei <sor.alexei@meowr.ru>
@@ -8,7 +8,7 @@ Vcs-Git: https://bitbucket.org/mrim-prpl-team/mrim-prpl.git
 Vcs-Browser: https://bitbucket.org/mrim-prpl-team/mrim-prpl/src
 Homepage: https://bitbucket.org/mrim-prpl-team/mrim-prpl
 
-Package: mrim-prpl
+Package: pidgin-mrim
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libpurple0 (>= 2.7.0)
 Description: MRIM-plugin for Pidgin
