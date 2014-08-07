@@ -2,7 +2,7 @@ Mail.ru Agent protocol plugin for Pidgin (libpurple)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Copyright 2010-2014 Antonov Nikolay <ostinru@gmail.com>
-Copyright 2010-2013 Reslayer <Reslayer@mail.ru>
+Copyright 2010-2014 Reslayer <Reslayer@mail.ru>
 Copyright 2011-2013 KIV <kiv.apple@gmail.com>
 
 This protocol plugin is based on 
@@ -23,9 +23,9 @@ mrim-prpl – это реализация протокола MMP (Mail.Ru) дл�
 	GPL v2 или выше
 
 Зависимости:
-	libpurple >=2.7.0
+	libpurple >= 2.7.0
 	gtk+ >= 2.?
-	Также используются cmake, shtool, gettext, pkg-config, check
+	Также используются cmake, gettext, pkg-config, check
 
 Официальный сайт:
 	https://bitbucket.org/mrim-prpl-team/mrim-prpl
@@ -39,9 +39,8 @@ mrim-prpl – это реализация протокола MMP (Mail.Ru) дл�
 2) Debian/Ubuntu пакеты можно взять со странички:
 	https://bitbucket.org/mrim-prpl-team/mrim-prpl/downloads
 3) ArchLinux:
-	самые свежие версии пакетов:
-	http://aur.archlinux.org/packages.php?ID=50800 (самая последняя версия из GIT)
-	http://aur.archlinux.org/packages.php?ID=42134 (самая последняя стабильная версия)
+	http://aur.archlinux.org/packages.php?ID=50800 (версия из git)
+	http://aur.archlinux.org/packages.php?ID=42134 (стабильная версия)
 4) Gentoo:
 	Добавить оверлей rion и установить mrim-prpl
 
@@ -49,13 +48,14 @@ mrim-prpl – это реализация протокола MMP (Mail.Ru) дл�
 	1) Для сборки и установки из исходников понадобятся заголовочные файлы 
 		libpurple. (Как их установить - зависит от Вашего дистрибутива.
 		Например, для Debian и Ubuntu: 
-			apt-get build-dep pidgin && apt-get install libpurple-dev
+			aptitude install cmake libpurple-dev libgtk2.0-dev check
 		Для openSUSE:
-			zypper in pidgin-devel
-		Для Fedora:
-			yum install pidgin-devel
-		В Gentoo и ArchLinux достаточно установить сам Pidgin.
-	2) aclocal -I /usr/share/aclocal/ && autoheader && autoconf && ./configure && make && sudo make install
+			zypper in cmake libpurple-devel gtk2-devel check-devel
+		Для ArchLinux:
+			pacman -S cmake libpurple gtk2 check
+		Для RHEL и Fedora:
+			yum install cmake libpurple-devel gtk2-devel check-devel
+	2) cmake . && make && sudo make install
 	3) Перезапускаем Pidgin
 	4) В "Учётные записи" – "Manage Accounts" ("Управление аккаунтами") создаём новое подключение
 		к УЖЕ ИМЕЮЩЕМУСЯ аккаунту на mail.ru (list.ru, bk.ru...) (то есть, зарегистрировать
