@@ -5,8 +5,6 @@
 
 #include "config.h"
 
-#define DISPLAY_VERSION "0.2.0"
-
 #include <glib.h>
 
 #define GETTEXT_PACKAGE "mrim-prpl-underbush"

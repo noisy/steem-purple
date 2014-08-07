@@ -4,7 +4,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{28D30FEA-45C4-4EE6-BC6C-ECDB7156AD98}
 AppName=mrim-prpl
-AppVersion=0.2.0 (git: 11ecd12dfa2b53a342789e7361a9a045c0493228)
+AppVersion=0.2.0 (git: 994cfc218ef828801029dd67208f412a937a8303)
 AppPublisherURL=https://bitbucket.org/mrim-prpl-team/mrim-prpl
 AppSupportURL=https://bitbucket.org/mrim-prpl-team/mrim-prpl
 AppUpdatesURL=https://bitbucket.org/mrim-prpl-team/mrim-prpl/downloads

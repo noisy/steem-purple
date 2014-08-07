@@ -1,4 +1,5 @@
 #!/bin/sh
+
 cd src
 xgettext -k_ -kN_ --from-code=utf-8 -o ../po/mrim-prpl-underbush.pot *.c *.h
 #mv ../po/mrim-prpl-underbush-ru_RU.po ../po/mrim-prpl-underbush-ru_RU.po.old

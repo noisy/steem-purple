@@ -10,28 +10,3 @@
 
 %:
 	dh $@
-
-override_dh_auto_clean:
-	dh_autoreconf_clean
-
-override_dh_auto_build:
-	./autogen.sh
-	./configure
-	$(MAKE)
-
-override_dh_auto_install:
-	$(MAKE) install \
-		DESTDIR=$(CURDIR)/debian/mrim-prpl
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs
-	dh_installdocs
-	dh_install
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb

@@ -41,7 +41,7 @@ static void build_default_user_agent() {
 	gchar *ui_version = g_hash_table_lookup(ht, "version");
 	mrim_user_agent = g_strdup_printf(
 		"client=\"mrim-prpl\" version=\"%s\" build=\"%s\" ui=\"%s %s (libpurple %s)\"",
-		DISPLAY_VERSION, BUILD_NUMBER, ui_name, ui_version, purple_version);
+		PROJECT_VERSION, BUILD_NUMBER, ui_name, ui_version, purple_version);
 }
 
 static gboolean plugin_load(PurplePlugin *plugin) {
@@ -935,7 +935,7 @@ static PurplePluginInfo plugin_info = {
 	PURPLE_PRIORITY_DEFAULT,
 	MRIM_PRPL_ID,
 	"Mail.ru Agent (experimental)",
-	DISPLAY_VERSION,
+	PROJECT_VERSION,
 	"Mail.ru Agent protocol plugin",
 	"Mail.ru Agent protocol plugin",
 	"My Name <email@helloworld.tld>",

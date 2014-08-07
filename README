@@ -25,7 +25,7 @@ mrim-prpl – это реализация протокола MMP (Mail.Ru) дл�
 Зависимости:
 	libpurple >=2.7.0
 	gtk+ >= 2.?
-	Также используется autotools, shtool, gettext, pkg-config, check
+	Также используются cmake, shtool, gettext, pkg-config, check
 
 Официальный сайт:
 	https://bitbucket.org/mrim-prpl-team/mrim-prpl
