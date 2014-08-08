@@ -82,6 +82,10 @@ add_subdirectory(pixmaps)
 
 pkg_check_modules(CHECK "check>=0.9.4")
 if(CHECK_FOUND)
+    # Populate check.
+    include_directories(${CHECK_INCLUDE_DIRS})
+    add_definitions(${CHECK_CFLAGS_OTHER})
+
     add_subdirectory(testsrc)
 else()
     message("check is not found, unit tests are disabled!")

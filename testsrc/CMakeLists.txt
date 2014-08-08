@@ -9,5 +9,11 @@ add_executable("${UNITTEST_NAME}" EXCLUDE_FROM_ALL
     mrim-util-test.c
     $<TARGET_OBJECTS:mrim-obj>)
 
+# Can't use ${CHECK_LIBRARIES}, cmake thinks that target "check" is being linked.
+target_link_libraries("${UNITTEST_NAME}"
+    ${REQ_LIBRARIES}
+    ${GTK2_LIBRARIES}
+    libcheck.so)
+
 add_test(NAME "${UNITTEST_NAME}" COMMAND "${UNITTEST_NAME}")
 add_dependencies("check" "${UNITTEST_NAME}")
