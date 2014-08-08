@@ -1,7 +1,7 @@
 project(mrim-prpl)
 cmake_minimum_required(VERSION 2.8)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 include(FindPkgConfig)
 include(FindGettext)
 include(CheckIncludeFiles)
@@ -12,6 +12,12 @@ set(PACKAGE_NAME "mrim")
 set(PROJECT_VERSION "0.2.0")
 # Set current git revision as BUILD_NUMBER definition.
 get_git_head_revision(BUILD_BRANCH BUILD_NUMBER)
+
+# Add uninstall target.
+configure_file("${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/cmake/cmake_uninstall.cmake"
+    IMMEDIATE @ONLY)
+add_custom_target(uninstall COMMAND "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake/cmake_uninstall.cmake")
 
 # Known working CFLAGS.
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC -DPIC -std=c99")
@@ -33,7 +39,6 @@ check_include_files("sys/socket.h" HAVE_SYS_SOCKET_H)
 pkg_check_modules(REQ
     "purple>=2.7.0"
     "glib-2.0"
-    "check>=0.9.4"
     REQUIRED)
 
 # Populate libraries.
@@ -74,8 +79,13 @@ endif()
 # Add subdirectories.
 add_subdirectory(src)
 add_subdirectory(pixmaps)
-add_subdirectory(testsrc)
 
+pkg_check_modules(CHECK "check>=0.9.4")
+if(CHECK_FOUND)
+    add_subdirectory(testsrc)
+else()
+    message("check is not found, unit tests are disabled!")
+endif()
 if(GETTEXT_FOUND)
     add_subdirectory(po)
 else()
