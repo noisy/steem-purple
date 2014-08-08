@@ -1,13 +1,17 @@
 project(mrim-prpl)
-cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 2.8)
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(FindPkgConfig)
 include(FindGettext)
 include(CheckIncludeFiles)
+include(GetGitRevisionDescription)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
 set(PACKAGE_NAME "mrim")
 set(PROJECT_VERSION "0.2.0")
-set(BUILD_NUMBER "null") # TODO: add git revision
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+# Set current git revision as BUILD_NUMBER definition.
+get_git_head_revision(BUILD_BRANCH BUILD_NUMBER)
 
 # Known working CFLAGS.
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fPIC -DPIC -std=c99")
@@ -19,24 +23,40 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-# Check for header files.
+# Definitions for source code.
+set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS PROJECT_VERSION="${PROJECT_VERSION}")
+set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS BUILD_NUMBER="${BUILD_NUMBER}")
+
+# Check for sys/socket.h.
 check_include_files("sys/socket.h" HAVE_SYS_SOCKET_H)
 
-pkg_check_modules(REQ "purple>=2.7.0" REQUIRED)
-pkg_check_modules(REQ "glib-2.0" REQUIRED)
-pkg_check_modules(CHECK "check>=0.9.4" REQUIRED)
-
-option(ENABLE_GTK "Enable gtk+ dialogs" OFF)
-option(ENABLE_FILES "Support file transfer" OFF)
-
-if(ENABLE_GTK OR ENABLE_FILES)
-    pkg_check_modules(REQ "gtk+-2.0" REQUIRED)
-endif()
+pkg_check_modules(REQ
+    "purple>=2.7.0"
+    "glib-2.0"
+    "check>=0.9.4"
+    REQUIRED)
 
 # Populate libraries.
-include_directories(${REQ_INCLUDE_DIRS} ${CHECK_INCLUDE_DIRS})
-add_definitions(${REQ_CFLAGS_OTHER} ${CHECK_CFLAGS_OTHER})
-link_directories(${REQ_LIBRARY_DIRS} ${CHECK_LIBRARY_DIRS})
+include_directories(${REQ_INCLUDE_DIRS})
+add_definitions(${REQ_CFLAGS_OTHER})
+
+option(ENABLE_GTK "Enable gtk+ dialogs" ON)
+option(ENABLE_FILES "Support file transfer" OFF)
+
+if(ENABLE_GTK)
+    pkg_check_modules(GTK2 "gtk+-2.0" REQUIRED)
+
+    # Populate Gtk2.
+    include_directories(${GTK2_INCLUDE_DIRS})
+    add_definitions(${GTK2_CFLAGS_OTHER})
+
+    # Gtk definition for source code.
+    set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS ENABLE_GTK)
+endif()
+
+if(ENABLE_FILES)
+    set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS ENABLE_FILES)
+endif()
 
 # Set constants for UNIX-like.
 if(UNIX)

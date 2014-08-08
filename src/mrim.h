@@ -3,8 +3,6 @@
 
 #define PURPLE_PLUGINS
 
-#include "config.h"
-
 #include <glib.h>
 
 #define GETTEXT_PACKAGE "mrim-prpl-underbush"
