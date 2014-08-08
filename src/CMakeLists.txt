@@ -5,9 +5,13 @@ add_library("${PACKAGE_NAME}-obj" OBJECT
     package.c
     statuses.c
     cl.c
-    ft.c
     message.c
     mrim-util.c)
+
+# Only link ft.c is file transfer support is enabled.
+if(ENABLE_FILES)
+    add_library("${PACKAGE_NAME}-obj" OBJECT ft.c)
+endif()
 
 add_library("${PACKAGE_NAME}" SHARED
     $<TARGET_OBJECTS:${PACKAGE_NAME}-obj>)
