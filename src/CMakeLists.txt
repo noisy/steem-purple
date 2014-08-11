@@ -21,5 +21,5 @@ target_link_libraries("${PACKAGE_NAME}"
     ${GTK2_LIBRARIES})
 
 if(UNIX)
-    install(FILES "${CMAKE_BINARY_DIR}/lib${PACKAGE_NAME}.so" DESTINATION "${LIBRARY_DIRECTORY}/purple-2/")
+    install(FILES "${CMAKE_BINARY_DIR}/lib${PACKAGE_NAME}.so" DESTINATION "${CMAKE_INSTALL_LIBDIR}/purple-2/")
 endif()
