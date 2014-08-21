@@ -1,4 +1,4 @@
-version 0.1.28.1 (04/11/2011). git bfd196c
+version 0.1.28.1 (04/11/2011):
 	Core
 		Fix build errors
                 Add ICQ UIN support
@@ -8,7 +8,7 @@ version 0.1.28.1 (04/11/2011). git bfd196c
 		Documentation now has no execution flag
                 README file is fixed
 
-version 0.1.28  (28/05/2011). git 0e47dc4
+version 0.1.28  (28/05/2011):
 	Core
 		Fix bad package
 		i18n: ru_RU (rc), uk (draft), be_BY (draft), maby other languages
@@ -25,7 +25,7 @@ version 0.1.28  (28/05/2011). git 0e47dc4
 		Log SMS to History
 
 
-version 0.1.26 (11/11/2010). git b0aa631
+version 0.1.26 (11/11/2010):
 	Core
 		? Fix bad package
 		Fix segfault
@@ -39,13 +39,13 @@ version 0.1.26 (11/11/2010). git b0aa631
 		Fix segfault (at sending unicode-specific symbols)
 		Fix html-formated text recieving
 	
-version 0.1.24 (1/09/2010) git 9be2a6a
+version 0.1.24 (1/09/2010):
 	Core
 		support pidgin 2.3.1+
 	Roster
 		fix 0.1.23 regressions
 
-version 0.1.23 (29/08/2010)
+version 0.1.23 (29/08/2010):
 	Core
 		downgrade to protocol v 1.9
 	Roster
