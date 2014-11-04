@@ -36,12 +36,11 @@ mrim-prpl – это реализация протокола MMP (Mail.Ru) дл�
 1) Debian/Ubuntu пакеты можно взять со странички:
 	https://bitbucket.org/mrim-prpl-team/mrim-prpl/downloads
 2) ArchLinux:
-	http://aur.archlinux.org/packages.php?ID=50800 (версия из git)
-	http://aur.archlinux.org/packages.php?ID=42134 (стабильная версия)
+	https://aur.archlinux.org/packages/pidgin-mrim-prpl
 3) Gentoo:
 	Добавить оверлей rion и установить mrim-prpl
 4) ALT Linux:
-	http://sisyphus.ru/en/srpm/Sisyphus/pidgin-plugin-mrim/
+	http://sisyphus.ru/en/srpm/Sisyphus/pidgin-plugin-mrim
 
 Если пакета под Ваш любимый дистрибутив нет, то можно собрать плагин из исходников. Для этого:
 	1) Для сборки и установки из исходников понадобятся заголовочные файлы 
@@ -53,7 +52,7 @@ mrim-prpl – это реализация протокола MMP (Mail.Ru) дл�
 		Для ArchLinux:
 			pacman -S cmake libpurple gtk2 check gettext
 		Для RHEL и Fedora:
-			yum install cmake libpurple-devel gtk2-devel check-devel gettext
+			dnf install cmake libpurple-devel gtk2-devel check-devel gettext
 	2) cmake . && make && sudo make install
 	3) Перезапускаем Pidgin
 	4) В "Учётные записи" – "Manage Accounts" ("Управление аккаунтами") создаём новое подключение
