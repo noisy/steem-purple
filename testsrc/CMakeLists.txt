@@ -7,7 +7,7 @@ set(UNITTEST_NAME "${PACKAGE_NAME}-testrunner")
 add_executable("${UNITTEST_NAME}" EXCLUDE_FROM_ALL
     tests.c
     mrim-util-test.c
-    $<TARGET_OBJECTS:mrim-obj>)
+    $<TARGET_OBJECTS:mrim.o>)
 
 # Can't use ${CHECK_LIBRARIES}, cmake thinks that target "check" is being linked.
 target_link_libraries("${UNITTEST_NAME}"

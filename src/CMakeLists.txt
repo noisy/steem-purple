@@ -1,6 +1,6 @@
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}")
 
-add_library("${PACKAGE_NAME}-obj" OBJECT
+add_library("${PACKAGE_NAME}.o" OBJECT
     mrim.c
     package.c
     statuses.c
@@ -10,11 +10,11 @@ add_library("${PACKAGE_NAME}-obj" OBJECT
 
 # Only link ft.c is file transfer support is enabled.
 if(ENABLE_FILES)
-    add_library("${PACKAGE_NAME}-obj" OBJECT ft.c)
+    add_library("${PACKAGE_NAME}.o" OBJECT ft.c)
 endif()
 
 add_library("${PACKAGE_NAME}" SHARED
-    $<TARGET_OBJECTS:${PACKAGE_NAME}-obj>)
+    $<TARGET_OBJECTS:${PACKAGE_NAME}.o>)
 
 target_link_libraries("${PACKAGE_NAME}"
     ${REQ_LIBRARIES}

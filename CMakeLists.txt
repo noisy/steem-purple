@@ -1,5 +1,5 @@
 project(mrim-prpl)
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.8)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 include(FindPkgConfig)
@@ -37,7 +37,7 @@ set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS BUILD_NUMBER="${BUILD
 check_include_files("sys/socket.h" HAVE_SYS_SOCKET_H)
 
 pkg_check_modules(REQ
-    "purple>=2.7.0"
+    "purple >= 2.7.0"
     "glib-2.0"
     REQUIRED)
 
@@ -80,7 +80,7 @@ endif()
 add_subdirectory(src)
 add_subdirectory(pixmaps)
 
-pkg_check_modules(CHECK "check>=0.9.4")
+pkg_check_modules(CHECK "check >= 0.9.4")
 if(CHECK_FOUND)
     # Populate check.
     include_directories(${CHECK_INCLUDE_DIRS})
