@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 2.8.8)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/")
 include(FindPkgConfig)
 include(FindGettext)
+include(FindThreads)
 include(CheckIncludeFiles)
 include(GetGitRevisionDescription)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
@@ -32,6 +33,9 @@ endif()
 # Definitions for source code.
 set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS PROJECT_VERSION="${PROJECT_VERSION}")
 set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS BUILD_NUMBER="${BUILD_NUMBER}")
+
+# Check for pthreads.
+find_package(Threads)
 
 # Check for sys/socket.h.
 check_include_files("sys/socket.h" HAVE_SYS_SOCKET_H)

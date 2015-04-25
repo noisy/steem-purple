@@ -18,7 +18,8 @@ add_library("${PACKAGE_NAME}" SHARED
 
 target_link_libraries("${PACKAGE_NAME}"
     ${REQ_LIBRARIES}
-    ${GTK2_LIBRARIES})
+    ${GTK2_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT})
 
 if(UNIX)
     install(FILES "${CMAKE_BINARY_DIR}/lib${PACKAGE_NAME}.so" DESTINATION "${LIB_INSTALL_DIR}/purple-2/")
