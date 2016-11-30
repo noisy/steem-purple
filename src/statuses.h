@@ -3,6 +3,11 @@
 
 #include "mrim.h"
 
+
+#define STEEM_STATUS_ONLINE   "online"
+#define STEEM_STATUS_AWAY     "away"
+#define STEEM_STATUS_OFFLINE  "offline"
+
 typedef struct {
 	gchar *purple_id;
 	gchar *purple_title;
@@ -67,6 +72,8 @@ static struct {
 PurpleMood *moods;
 
 GList* mrim_status_types(PurpleAccount* account);
+GList* steem_status_types(PurpleAccount* account);
+
 PurpleMood *mrim_get_moods(PurpleAccount *account);
 void mrim_set_status(PurpleAccount *acct, PurpleStatus *status);
 char *mrim_status_text(PurpleBuddy *buddy);

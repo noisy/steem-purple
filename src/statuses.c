@@ -34,26 +34,60 @@ GList* mrim_status_types(PurpleAccount* account) {
 	return status_list;
 }
 
+
+
+GList* steem_status_types(PurpleAccount* account) {
+	GList *types = NULL;
+	PurpleStatusType *type;
+
+	purple_debug_info("steem-prpl", "returning status types for %s: %s, %s, %s\n",
+					  account->username,
+					  STEEM_STATUS_ONLINE, STEEM_STATUS_AWAY, STEEM_STATUS_OFFLINE);
+
+	type = purple_status_type_new_with_attrs(PURPLE_STATUS_AVAILABLE,
+											 STEEM_STATUS_ONLINE, NULL, TRUE, TRUE, FALSE,
+											 "message", "Message", purple_value_new(PURPLE_TYPE_STRING),
+											 NULL);
+	types = g_list_prepend(types, type);
+
+	type = purple_status_type_new_with_attrs(PURPLE_STATUS_AWAY,
+											 STEEM_STATUS_AWAY, NULL, TRUE, TRUE, FALSE,
+											 "message", "Message", purple_value_new(PURPLE_TYPE_STRING),
+											 NULL);
+	types = g_list_prepend(types, type);
+
+	type = purple_status_type_new_with_attrs(PURPLE_STATUS_OFFLINE,
+											 STEEM_STATUS_OFFLINE, NULL, TRUE, TRUE, FALSE,
+											 "message", "Message", purple_value_new(PURPLE_TYPE_STRING),
+											 NULL);
+	types = g_list_prepend(types, type);
+
+	return g_list_reverse(types);
+}
+
+
 PurpleMood *mrim_get_moods(PurpleAccount *account) {
 	return moods;
 }
 
 void mrim_set_status(PurpleAccount *acct, PurpleStatus *status) {
-	MrimData *mrim = acct->gc->proto_data;
-	g_return_if_fail(mrim != NULL);
-	free_mrim_status(mrim->status);
-	mrim->status = make_mrim_status_from_purple(status);
-	MrimPackage *pack = mrim_package_new(mrim->seq++, MRIM_CS_CHANGE_STATUS);
-	mrim_package_add_UL(pack, mrim->status->id);
-	mrim_package_add_LPSA(pack, mrim->status->uri);
-	mrim_package_add_LPSW(pack, mrim->status->title);
-	mrim_package_add_LPSW(pack, mrim->status->desc);
-	mrim_package_add_UL(pack, COM_SUPPORT);
-	mrim_package_send(pack, mrim);
-	pack = mrim_package_new(mrim->seq++, MRIM_CS_MICROBLOG_POST);
-	mrim_package_add_UL(pack, MRIM_BLOG_STATUS_MUSIC);
-	mrim_package_add_LPSW(pack, mrim->status->desc);
-	mrim_package_send(pack, mrim);
+	purple_debug_info("steem-prpl", "[%s] Username %s\n", __func__, acct->username);
+
+//	MrimData *mrim = acct->gc->proto_data;
+//	g_return_if_fail(mrim != NULL);
+//	free_mrim_status(mrim->status);
+//	mrim->status = make_mrim_status_from_purple(status);
+//	MrimPackage *pack = mrim_package_new(mrim->seq++, MRIM_CS_CHANGE_STATUS);
+//	mrim_package_add_UL(pack, mrim->status->id);
+//	mrim_package_add_LPSA(pack, mrim->status->uri);
+//	mrim_package_add_LPSW(pack, mrim->status->title);
+//	mrim_package_add_LPSW(pack, mrim->status->desc);
+//	mrim_package_add_UL(pack, COM_SUPPORT);
+//	mrim_package_send(pack, mrim);
+//	pack = mrim_package_new(mrim->seq++, MRIM_CS_MICROBLOG_POST);
+//	mrim_package_add_UL(pack, MRIM_BLOG_STATUS_MUSIC);
+//	mrim_package_add_LPSW(pack, mrim->status->desc);
+//	mrim_package_send(pack, mrim);
 }
 
 char *mrim_status_text(PurpleBuddy *buddy) {

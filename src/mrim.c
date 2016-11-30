@@ -36,11 +36,46 @@ static void plugin_destroy(PurplePlugin *plugin) {
 
 }
 
+
+typedef void (*GcFunc)(PurpleConnection *from,
+					   PurpleConnection *to,
+					   gpointer userdata);
+
+typedef struct {
+	GcFunc fn;
+	PurpleConnection *from;
+	gpointer userdata;
+} GcFuncData;
+
+
+void discover_status(PurpleConnection *from, PurpleConnection *to, gpointer userdata) {
+	const char *from_username = from->account->username;
+	const char *to_username = to->account->username;
+
+	purple_debug_info("steem-prpl", "%s checks status of %s\n", from_username, to_username);
+	purple_prpl_got_user_status(from->account, to_username, STEEM_STATUS_ONLINE, NULL);
+}
+
+static void call_if_steemprpl(gpointer data, gpointer userdata) {
+	PurpleConnection *gc = (PurpleConnection *)(data);
+	GcFuncData *gcfdata = (GcFuncData *)userdata;
+
+	if (!strcmp(gc->account->protocol_id, MRIM_PRPL_ID))	// TODO: MRIM_PRPL_ID -> STEEM_PRPL_ID
+		gcfdata->fn(gcfdata->from, gc, gcfdata->userdata);
+}
+
+static void foreach_steemprpl_gc(GcFunc fn, PurpleConnection *from, gpointer userdata) {
+	GcFuncData gcfdata = { fn, from, userdata };
+	g_list_foreach(purple_connections_get_all(), call_if_steemprpl, &gcfdata);
+}
+
 static void steem_login(PurpleAccount *account) {
 	purple_debug_info("steem-prpl", "[%s]\n", __func__);
 	g_return_if_fail(account != NULL);
 	PurpleConnection *gc = purple_account_get_connection(account);
 	purple_connection_set_state(gc, PURPLE_CONNECTED);
+
+	foreach_steemprpl_gc(discover_status, gc, NULL);
 }
 
 static void mrim_close(PurpleConnection *gc) {
@@ -115,7 +150,8 @@ static PurplePluginProtocolInfo prpl_info = { //OPT_PROTO_CHAT_TOPIC
 	NULL,					/* list_emblem */
 	mrim_status_text,	/* status_text */
 	mrim_tooltip_text,	/* tooltip_text */
-	mrim_status_types,	/* status_types */
+//	mrim_status_types,	/* status_types */
+	steem_status_types,
 	mrim_user_actions,	/* user_actions */
 	mrim_chat_info,		/* chat_info */
 	mrim_chat_info_defaults,/* chat_info_defaults */
