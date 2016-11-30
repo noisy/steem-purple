@@ -33,7 +33,7 @@ static gboolean plugin_unload(PurplePlugin *plugin) {
 }
 
 static void plugin_destroy(PurplePlugin *plugin) {
-		
+
 }
 
 static void mrim_login(PurpleAccount *account) {
@@ -107,9 +107,9 @@ static PurplePluginProtocolInfo prpl_info = { //OPT_PROTO_CHAT_TOPIC
 		10240,				/* max_filesize */
 		PURPLE_ICON_SCALE_DISPLAY	/* scale_rules */
 	},
-    mrim_list_icon,		/* list_icon */
+	mrim_list_icon,		/* list_icon */
 	NULL,					/* list_emblem */
-    mrim_status_text,	/* status_text */
+	mrim_status_text,	/* status_text */
 	mrim_tooltip_text,	/* tooltip_text */
 	mrim_status_types,	/* status_types */
 	mrim_user_actions,	/* user_actions */
@@ -159,8 +159,8 @@ static PurplePluginProtocolInfo prpl_info = { //OPT_PROTO_CHAT_TOPIC
 	NULL,			/* roomlist_cancel */
 	NULL,			/* roomlist_expand_category */
 	NULL,
-    NULL,
-    NULL,
+	NULL,
+	NULL,
 	mrim_offline_message,	/* mrim_offline_message */
 	NULL,			/* whiteboard_prpl_ops */
 	NULL,			/* send_raw */
@@ -196,18 +196,18 @@ static PurplePluginInfo plugin_info = {
 	"Steem",
 	"Steem",
 	"My Name <email@helloworld.tld>",
-	"https://bitbucket.org/mrim-prpl-team/mrim-prpl",     
-	plugin_load,		/* plugin_load */                
+	"https://bitbucket.org/mrim-prpl-team/mrim-prpl",
+	plugin_load,		/* plugin_load */
 	plugin_unload,		/* plugin_unload */
 	plugin_destroy,		/* plugin_destroy */
 	NULL,
 	&prpl_info,		/* extra_info */
-	NULL,                        
-	mrim_prpl_actions,	/* plugin_actions */                   
-	NULL,                          
-	NULL,                          
-	NULL,                          
-	NULL                           
+	NULL,
+	mrim_prpl_actions,	/* plugin_actions */
+	NULL,
+	NULL,
+	NULL,
+	NULL
 };
 
 static void init_plugin(PurplePlugin *plugin) {
