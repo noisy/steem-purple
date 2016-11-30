@@ -57,13 +57,6 @@ void mrim_set_status(PurpleAccount *acct, PurpleStatus *status) {
 }
 
 char *mrim_status_text(PurpleBuddy *buddy) {
-	g_return_val_if_fail(buddy != NULL, NULL);
-	if (buddy->proto_data) {
-		MrimBuddy *mb = buddy->proto_data;
-		if (mb->status) {
-			return g_strdup(mb->status->display_str); //TODO: Mem leak
-		}
-	}
 	return NULL;
 }
 

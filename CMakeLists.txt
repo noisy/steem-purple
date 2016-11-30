@@ -9,7 +9,7 @@ include(CheckIncludeFiles)
 include(GetGitRevisionDescription)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH true)
 
-set(PACKAGE_NAME "mrim")
+set(PACKAGE_NAME "steem")
 set(PROJECT_VERSION "0.2.0")
 # Set current git revision as BUILD_NUMBER definition.
 get_git_head_revision(BUILD_BRANCH BUILD_NUMBER)

@@ -791,7 +791,7 @@ void mrim_url_menu_action(PurpleBlistNode *node, gpointer userdata) {
 	PurpleAccount *account = purple_buddy_get_account(buddy);
 	MrimData *mrim = account->gc->proto_data;
 	g_return_if_fail(mrim != NULL);
-	mrim_open_myworld_url(mrim, buddy->name, userdata);
+//	mrim_open_myworld_url(mrim, buddy->name, userdata);
 }
 
 void blist_toggle_visible(PurpleBlistNode *node, gpointer userdata) {
