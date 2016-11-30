@@ -36,7 +36,11 @@ static void plugin_destroy(PurplePlugin *plugin) {
 
 }
 
-static void mrim_login(PurpleAccount *account) {
+static void steem_login(PurpleAccount *account) {
+	purple_debug_info("steem-prpl", "[%s]\n", __func__);
+	g_return_if_fail(account != NULL);
+	PurpleConnection *gc = purple_account_get_connection(account);
+	purple_connection_set_state(gc, PURPLE_CONNECTED);
 }
 
 static void mrim_close(PurpleConnection *gc) {
@@ -115,7 +119,7 @@ static PurplePluginProtocolInfo prpl_info = { //OPT_PROTO_CHAT_TOPIC
 	mrim_user_actions,	/* user_actions */
 	mrim_chat_info,		/* chat_info */
 	mrim_chat_info_defaults,/* chat_info_defaults */
-	mrim_login,		/* login */
+	steem_login,		/* login */
 	mrim_close,		/* close */
 	mrim_send_im,		/* send_im */
 	NULL,			/* set_info */
@@ -195,8 +199,8 @@ static PurplePluginInfo plugin_info = {
 	PROJECT_VERSION,
 	"Steem",
 	"Steem",
-	"My Name <email@helloworld.tld>",
-	"https://bitbucket.org/mrim-prpl-team/mrim-prpl",
+	"@noisy - Krzysztof Szumny <noisy.pl@gmail.com>",
+	"https://github.com/noisy/steem-purple",
 	plugin_load,		/* plugin_load */
 	plugin_unload,		/* plugin_unload */
 	plugin_destroy,		/* plugin_destroy */

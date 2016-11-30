@@ -374,83 +374,83 @@ void mrim_add_buddy(PurpleConnection *gc, PurpleBuddy *buddy, PurpleGroup *group
 	g_return_if_fail(buddy != NULL);
 	g_return_if_fail(group != NULL);
 	g_return_if_fail(gc != NULL);
-	g_return_if_fail(gc->state == PURPLE_CONNECTED);
+//	g_return_if_fail(gc->state == PURPLE_CONNECTED);
 	purple_debug_info("mrim-prpl", "[%s] Add buddy '%s' to group '%s'\n", __func__, buddy->name, group->name);
-	{
-		const gchar *normalized_name = mrim_normalize(gc->account, (const gchar*)buddy->name);
-		g_free(buddy->name);
-		buddy->name = (gchar*)normalized_name;
-	}
-	PurpleBuddy *old_buddy = purple_find_buddy(gc->account, buddy->name);
-	MrimData *mrim = gc->proto_data;
-	MrimBuddy *mb;
-	if (old_buddy != NULL  && old_buddy != buddy) {
-		purple_blist_remove_buddy(buddy);
-		buddy = old_buddy;
-		mb = (MrimBuddy*)(buddy->proto_data);
-		if (mb) {
-			mb->buddy = buddy;
-			purple_blist_alias_buddy(buddy, mb->alias);
-			update_buddy_status(buddy);
-		}
-	} else if (is_valid_email(buddy->name) || is_valid_phone(buddy->name)) {
-		purple_debug_info("mrim-prpl", "[%s] Buddy has a valid email or phone '%s'\n", __func__, buddy->name);
-		MrimGroup *gr = get_mrim_group_by_name(mrim, group->name);
-		gint group_id = gr ? gr->id : -1;
-		if (group_id == -1) {
-			purple_debug_info("mrim-prpl", "[%s] Group '%s' not exists - creating\n", __func__, group->name);
-			AddContactInfo *info = g_new(AddContactInfo, 1);
-			info->buddy = buddy;
-			info->group = group;
-			info->move = FALSE;
-			cl_add_group(mrim, group->name, info);
-		} else {
-			mb = g_new0(MrimBuddy, 1);
-			mb->email = g_strdup(buddy->name);
-			mb->alias = g_strdup(buddy->alias ? buddy->alias : buddy->name);
-			buddy->proto_data = mb;
-			mb->group_id = group_id;
-			mb->phones = g_new0(gchar*, 4);
-			if (is_valid_phone(buddy->name)) {
-				mb->flags |= CONTACT_FLAG_PHONE;
-				mb->authorized = TRUE;
-				mb->status = make_mrim_status(STATUS_ONLINE, NULL, NULL, NULL);
-			} else {
-				mb->authorized = FALSE;
-				mb->status = make_mrim_status(STATUS_OFFLINE, NULL, NULL, NULL);
-			}
-			purple_debug_info("mrim-prpl", "[%s] Adding buddy with email = '%s' alias = '%s', flags = 0x%x\n", __func__,
-				mb->email, mb->alias, mb->flags);
-			MrimPackage *pack = mrim_package_new(mrim->seq++, MRIM_CS_ADD_CONTACT);
-			mrim_package_add_UL(pack, mb->flags);
-			mrim_package_add_UL(pack, mb->group_id);
-			mrim_package_add_LPSA(pack, mb->email);
-			mrim_package_add_LPSW(pack, mb->alias);
-			{
-				gchar *str = g_strjoinv(",", mb->phones);
-				mrim_package_add_LPSA(pack, str);
-				g_free(str);
-			}
-			mrim_package_add_LPSA(pack, " ");
-			mrim_package_add_UL(pack, 0);
-			{
-				BuddyAddInfo *info = g_new(BuddyAddInfo, 1);
-				info->buddy = buddy;
-				mrim_add_ack_cb(mrim, pack->header->seq, mrim_add_contact_ack, info);
-			}
-			mrim_package_send(pack, mrim);
-			if (!(mb->flags & CONTACT_FLAG_PHONE)) {
-				mrim_fetch_avatar(buddy);
-			}
-		}
-	} else {
-		purple_debug_info("mrim-prpl", "[%s] '%s' is not valid email or phone number!\n", __func__, buddy->name);
-		gchar *msg = g_strdup_printf(_("Unable to add the buddy \"%s\" because the username is invalid.  Usernames must be a valid email address(in mail.ru bk.ru list.ru corp.mail.ru inbox.ru domains), valid ICQ UIN in NNNN@uin.icq format or valid phone number (start with + and contain only numbers, spaces and \'-\'."), buddy->name);
-		purple_notify_error(gc, NULL, _("Unable to Add"), msg);
-		g_free(msg);
-		purple_blist_remove_buddy(buddy);
-	}
-	purple_blist_show();
+//	{
+//		const gchar *normalized_name = mrim_normalize(gc->account, (const gchar*)buddy->name);
+//		g_free(buddy->name);
+//		buddy->name = (gchar*)normalized_name;
+//	}
+//	PurpleBuddy *old_buddy = purple_find_buddy(gc->account, buddy->name);
+//	MrimData *mrim = gc->proto_data;
+//	MrimBuddy *mb;
+//	if (old_buddy != NULL  && old_buddy != buddy) {
+//		purple_blist_remove_buddy(buddy);
+//		buddy = old_buddy;
+//		mb = (MrimBuddy*)(buddy->proto_data);
+//		if (mb) {
+//			mb->buddy = buddy;
+//			purple_blist_alias_buddy(buddy, mb->alias);
+//			update_buddy_status(buddy);
+//		}
+//	} else if (is_valid_email(buddy->name) || is_valid_phone(buddy->name)) {
+//		purple_debug_info("mrim-prpl", "[%s] Buddy has a valid email or phone '%s'\n", __func__, buddy->name);
+//		MrimGroup *gr = get_mrim_group_by_name(mrim, group->name);
+//		gint group_id = gr ? gr->id : -1;
+//		if (group_id == -1) {
+//			purple_debug_info("mrim-prpl", "[%s] Group '%s' not exists - creating\n", __func__, group->name);
+//			AddContactInfo *info = g_new(AddContactInfo, 1);
+//			info->buddy = buddy;
+//			info->group = group;
+//			info->move = FALSE;
+//			cl_add_group(mrim, group->name, info);
+//		} else {
+//			mb = g_new0(MrimBuddy, 1);
+//			mb->email = g_strdup(buddy->name);
+//			mb->alias = g_strdup(buddy->alias ? buddy->alias : buddy->name);
+//			buddy->proto_data = mb;
+//			mb->group_id = group_id;
+//			mb->phones = g_new0(gchar*, 4);
+//			if (is_valid_phone(buddy->name)) {
+//				mb->flags |= CONTACT_FLAG_PHONE;
+//				mb->authorized = TRUE;
+//				mb->status = make_mrim_status(STATUS_ONLINE, NULL, NULL, NULL);
+//			} else {
+//				mb->authorized = FALSE;
+//				mb->status = make_mrim_status(STATUS_OFFLINE, NULL, NULL, NULL);
+//			}
+//			purple_debug_info("mrim-prpl", "[%s] Adding buddy with email = '%s' alias = '%s', flags = 0x%x\n", __func__,
+//				mb->email, mb->alias, mb->flags);
+//			MrimPackage *pack = mrim_package_new(mrim->seq++, MRIM_CS_ADD_CONTACT);
+//			mrim_package_add_UL(pack, mb->flags);
+//			mrim_package_add_UL(pack, mb->group_id);
+//			mrim_package_add_LPSA(pack, mb->email);
+//			mrim_package_add_LPSW(pack, mb->alias);
+//			{
+//				gchar *str = g_strjoinv(",", mb->phones);
+//				mrim_package_add_LPSA(pack, str);
+//				g_free(str);
+//			}
+//			mrim_package_add_LPSA(pack, " ");
+//			mrim_package_add_UL(pack, 0);
+//			{
+//				BuddyAddInfo *info = g_new(BuddyAddInfo, 1);
+//				info->buddy = buddy;
+//				mrim_add_ack_cb(mrim, pack->header->seq, mrim_add_contact_ack, info);
+//			}
+//			mrim_package_send(pack, mrim);
+//			if (!(mb->flags & CONTACT_FLAG_PHONE)) {
+//				mrim_fetch_avatar(buddy);
+//			}
+//		}
+//	} else {
+//		purple_debug_info("mrim-prpl", "[%s] '%s' is not valid email or phone number!\n", __func__, buddy->name);
+//		gchar *msg = g_strdup_printf(_("Unable to add the buddy \"%s\" because the username is invalid.  Usernames must be a valid email address(in mail.ru bk.ru list.ru corp.mail.ru inbox.ru domains), valid ICQ UIN in NNNN@uin.icq format or valid phone number (start with + and contain only numbers, spaces and \'-\'."), buddy->name);
+//		purple_notify_error(gc, NULL, _("Unable to Add"), msg);
+//		g_free(msg);
+//		purple_blist_remove_buddy(buddy);
+//	}
+//	purple_blist_show();
 }
 
 void mrim_modify_buddy_ack(MrimData *mrim, gpointer user_data, MrimPackage *pack) {
